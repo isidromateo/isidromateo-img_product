@@ -1,0 +1,12 @@
+ID,Name,Description,ImageUrl,DiscontinuedDate,Price,Height,Width,Depth,Quantity,Supplier_id
+08c142fa-01b0-441d-b01d-eeaa3291f6f0,Bread,Whole grain bread,/product/webapp/assets/bread.jpg,,2.5,5,10,8,20,
+6967edb4-cd83-4c8b-90ae-6894a71b398f,Vint soda,Americana Variety - Mix of 6 flavors,/product/webapp/assets/vint-soda.jpg,,20.9,5,10,8,8,6967edb4-cd83-4c8b-90ae-6894a71b398f
+d1-4c56-8e15-0246dc7a0cbf,Havina Cola,The Original Key Lime Cola,/product/webapp/assets/havina-cola.jpg,2006-10-01T00:00:00Z,,19.9,5,10,8,
+85-4c1c-8f4e-b3439a5ec637,Cranberry Juice,16-Ounce Plastic Bottles (Pack of 12),/product/webapp/assets/cranberry-juice.jpg,,22.8,5,10,8,12,
+06f86ef1-1525-4932-b1ce-d40661464c66,Pink Lemonade,36 Ounce Cans (Pack of 3),/product/webapp/assets/pink-lemonade.jpg,,18.8,5,10,8,6,
+5ee16f77-171c-4f1e-b455-221a1530b242,DVD Player,1080P Upconversion DVD Player,/product/webapp/assets/dvd-player.jpg,,35.88,5,10,8,0,
+58a8c519-2aa6-4289-84c3-d79de5a67dd0,LCD HDTV,42 inch 1080p LCD with Built-in Blu-ray Disc Player,/product/webapp/assets/lcd-hdtv.jpg,,1088.8,5,10,8,0,
+aa74747d-c297-4f0a-981a-8fb0ca92b756,Milk,Low fat milk,/product/webapp/assets/milk.jpg,,3.5,5,10,8,15,
+de411986-f74c-4082-83bc-2aa5c5a25aad,Coffee,Bulk size can of instant coffee,/product/webapp/assets/coffee.jpg,,6.99,5,10,8,16,
+9e800613-7b96-4203-8817-f25fcc89dfbc,Fruit Punch Mango flavor, 8.3 Ounce Cans (Pack of 24),/product/webapp/assets/fruit-punch.png,,22.99,5,10,8,5,
+aa7d843f-c6c5-4bc9-846b-ddac07966f10,Lemonade Classic,refreshing lemonade (Single bottle),/product/webapp/assets/lemonade.jpg,,1.01,5,10,8,3,
