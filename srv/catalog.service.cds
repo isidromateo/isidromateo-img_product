@@ -21,28 +21,32 @@ define service CatalogService {
     entity Products          as
         select from logali.materials.Products {
             ID,
-            name as ProductName @mandatory,
-            Description         @mandatory,
+            name             as ProductName     @mandatory,
+            Description                         @mandatory,
             ImageUrl,
             ReleaseDate,
             DiscontinuedDate,
-            Price               @mandatory,
+            Price                               @mandatory,
             Height,
             Width,
             Depth,
-            *,
-        //     Quantity                          @(mandatory @assert.range,
-        //     UnitOfMeasures as ToUnitOfMeasure @mandatory,
-        //     Currency       as ToCurrency      @mandatory,
-        //     Category       as ToCategory      @mandatory,
-        //     Category.name  as Category        @mandatory,
-        //     DimensionUnits as ToDimensioUnit,
-        //     SalesData,
-        //     Supplier,
-        //     Reviews
-        //   Rating,
-        //   StockAvailability,
-        //   ToStockAvailibilty
+            Quantity                            @(
+                mandatory,
+                assert.range : [
+                    0.00,
+                    20.00
+                ]
+            ),
+            UnitOfMeasure_id as ToUnitOfMeasure @mandatory,
+            Currency_Id      as ToCurrency      @mandatory,
+            Category_Id      as ToCategory      @mandatory,
+            Supplier_Id      as ToSupplier      @mandatory,
+            DimensionUnit_Id as ToDimensioUnit
+        //            SalesData,
+        //            Reviews,
+        //            Rating,
+        //            StockAvailability
+        //            ToStockAvailibilty
         };
 
     entity Supplier          as
@@ -73,13 +77,12 @@ define service CatalogService {
             DeliveryDate,
             Revenue,
             Product_id,
-            Currency1,
-            DeliveryMonth1,
-            //          Currency.id               as CurrencyKey,
-            //          DeliveryMonth.id          as DeliveryMonthId,
-            //          DeliveryMonth.Description as DeliveryMonth,
-            Products as ToProduct
-
+            Currency_id,
+            DeliveryMonth_id,
+        //         Currency.id               as CurrencyKey,
+        //         DeliveryMonth.id          as DeliveryMonthId,
+        //         DeliveryMonth.Description as DeliveryMonth,
+        //Products as ToProduct
 
         };
 
@@ -129,21 +132,21 @@ define service MyService {
             *,
             name,
             Description,
-            Supplier.Address
+            Supplier_Id.Address
         }
         where
-            Supplier.Address.PostalCode = 98052;
+            Supplier_Id.Address.PostalCode = 98052;
 
     entity SuppliersToSales as
         select
-            Supplier.Email,
-            Supplier.createdAt,
-            Supplier.Phone,
-            Supplier.name
+            Supplier_Id.Email,
+            Supplier_Id.createdAt,
+            Supplier_Id.Phone,
+            Supplier_Id.name
         from logali.materials.Products[name = 'Vint soda'];
 
     entity EntityInfix      as
-        select Supplier[name = 'Tokyo Traders2'].Phone from logali.materials.Products
+        select Supplier_Id[name = 'Tokyo Traders2'].Phone from logali.materials.Products
         where
             Products.name = 'Vint soda';
 
@@ -151,7 +154,7 @@ define service MyService {
         select Phone from logali.materials.Products
         left join logali.sales.Suppliers as supp
             on(
-                supp.ID = Products.Supplier.ID
+                supp.ID = Products.Supplier_Id.ID
             )
             and supp.name = 'Tokyo Traders2'
         where
@@ -168,9 +171,11 @@ define service reports {
             Price                  as Price2 : Integer
         from logali.materials.Products;
 
-    entity EntityExists as
-    select from logali.materials.Products {
-        name
-    } where exists Supplier[name = 'Tokyo Traders2'];
+    entity EntityExists  as
+        select from logali.materials.Products {
+            name
+        }
+        where
+            exists Supplier_Id[name = 'Tokyo Traders2'];
 
 }

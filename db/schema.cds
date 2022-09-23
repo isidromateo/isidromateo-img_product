@@ -22,25 +22,26 @@ type Dec : Decimal(16, 2);
 context materials {
 
     entity Products : cuid, managed {
-        name             : localized String not null;
-        Description      : localized String;
-        ImageUrl         : String;
-        ReleaseDate      : Date default CURRENT_DATE;
-        DiscontinuedDate : DateTime;
-        Price            : Dec; //Decimal(16, 2);
-        Height           : type of Price; //Decimal(16, 2);
-        Width            : Decimal(16, 2);
-        Depth            : Decimal(16, 2);
-        Quantity         : Decimal(16, 2);
-        Supplier         : Association to sales.Suppliers;
-        UnitOfMeasures   : Association to UnitOfMeasures;
-        Currency         : Association to Currencies;
-        DimensionUnits   : Association to DimensionUnits;
-        Category         : Association to Categories;
-        SalesData        : Association to many sales.SalesData
-                               on SalesData.Products = $self;
-        Reviews          : Association to many ProductReview
-                               on Reviews.Products = $self;
+        name              : localized String not null;
+        Description       : localized String;
+        ImageUrl          : String;
+        ReleaseDate       : Date default CURRENT_DATE;
+        DiscontinuedDate  : DateTime;
+        Price             : Dec; //Decimal(16, 2);
+        Height            : type of Price; //Decimal(16, 2);
+        Width             : Decimal(16, 2);
+        Depth             : Decimal(16, 2);
+        Quantity          : Decimal(16, 2);
+        UnitOfMeasure_id  : Association to UnitOfMeasures;
+        Currency_Id       : Association to Currencies;
+        Category_Id       : Association to Categories;
+        Supplier_Id       : Association to sales.Suppliers;
+        DimensionUnit_Id  : Association to DimensionUnits;
+        StockAvailability : Association to StockAvailability;
+        SalesData         : Association to many sales.SalesData
+                                on SalesData.Products = $self;
+        Reviews           : Association to many ProductReview
+                                on Reviews.Products = $self;
     //        Supplier_ID       : UUID;
     //        ToSupplier        : Association to one Suppliers
     //                                on ToSupplier.id = Supplier_ID;
@@ -87,11 +88,11 @@ context materials {
         Products : Association to Products;
     };
 
-    //SelProducts
-    //ProjProducts
-    //ProjProducts2
-    //ProjProducts3
-    //Products(extensión)
+    //  SelProducts1
+    //   ProjProducts,
+    //    ProjProducts2,
+    //    ProjProducts3,
+    //    Products(extensión),
 
     entity SelProducts  as
         select from Products {
@@ -102,7 +103,7 @@ context materials {
         select from Products {
             name,
             Price,
-            Quantity
+            Quantity,
 
         };
 
@@ -168,7 +169,7 @@ context sales {
         Phone    : String;
         Fax      : String;
         Products : Association to many materials.Products
-                       on Products.Supplier = $self;
+                       on Products.Supplier_Id = $self;
 
     };
 
@@ -211,14 +212,15 @@ context sales {
 
 
     entity SalesData : cuid, managed {
-        DeliveryDate   : DateTime;
-        Revenue        : Decimal(16, 2);
-        Product_id     : UUID;
-        Currency1      : String(3);
-        DeliveryMonth1 : Date;
-        Products       : Association to materials.Products;
-        Currency       : Association to materials.Currencies;
-        DeliveryMonth  : Association to sales.Months;
+        DeliveryDate     : DateTime;
+        Revenue          : Decimal(16, 2);
+        Product_id       : UUID;
+        Currency_id      : String(3);
+        DeliveryMonth_id : Date;
+        //    Currency_id      : Association to materials.Currencies;
+        //    DeliveryMonth_id : Association to sales.Months;
+        Products         : Association to materials.Products;
+
     };
 
 }
