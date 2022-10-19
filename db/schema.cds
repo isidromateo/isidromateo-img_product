@@ -32,11 +32,11 @@ context materials {
         Width             : Decimal(16, 2);
         Depth             : Decimal(16, 2);
         Quantity          : Decimal(16, 2);
-        UnitOfMeasure_id  : Association to UnitOfMeasures;
-        Currency_Id       : Association to Currencies;
-        Category_Id       : Association to Categories;
-        Supplier_Id       : Association to sales.Suppliers;
-        DimensionUnit_Id  : Association to DimensionUnits;
+        UnitOfMeasure   : Association to UnitOfMeasures;
+        Currency        : Association to Currencies;
+        Category        : Association to Categories;
+        Supplier        : Association to sales.Suppliers;
+        DimensionUnit   : Association to DimensionUnits;
         StockAvailability : Association to StockAvailability;
         SalesData         : Association to many sales.SalesData
                                 on SalesData.Products = $self;

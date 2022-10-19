@@ -37,7 +37,7 @@ define service CatalogService {
                     20.00
                 ]
             ),
-            UnitOfMeasure_id as ToUnitOfMeasure @mandatory,
+            UnitOfMeasure_Id as ToUnitOfMeasure @mandatory,
             Currency_Id      as ToCurrency      @mandatory,
             Category_Id      as ToCategory      @mandatory,
             Supplier_Id      as ToSupplier      @mandatory,
